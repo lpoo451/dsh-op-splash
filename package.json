@@ -1,6 +1,6 @@
 {
   "name": "dsh-op-splash",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "DeepSeek Harness 开场动画插件：冷启动全屏播放动画（仓库不带素材，装上后导入自己的视频/图片/幻灯片），设置页提供总开关、动画选择器、播放频率（每次/每会话/每天）、随机（可限定参与范围并逐项设权重）、按时段播放（可限定星期几）、图片停留时长（2/3/5 秒、一直停到手动跳过、或自定义 1–600 秒）、幻灯片（多张图按序播放，每张停留/过渡/间隔可改，顺序可调）与四种转场（淡入淡出/缓慢推进/白闪/擦除）、跳过提示（位置与文案可配）与音量控制，并可直接导入自己的视频/图片/幻灯片；素材清单会列出每件素材的体积与「未上架」原因（导入素材存在 ~/.dsh/dsh-op-splash-animations/）。与 dsh-startup-screen 完全独立，互不修改。",
   "keywords": [
     "dsh",
@@ -39,7 +39,8 @@
   },
   "license": "MIT",
   "engines": {
-    "node": ">=20"
+    "node": ">=20",
+    "dsh": ">=0.2.0-rc.2 <0.3.0-0"
   },
   "dsh": {
     "bundle": {
@@ -52,5 +53,13 @@
       "platform": "web"
     }
   },
-  "author": "鲸鱼娘女仆 & 老大"
+  "author": "鲸鱼娘女仆 & 老大",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lpoo451/dsh-op-splash.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lpoo451/dsh-op-splash/issues"
+  },
+  "homepage": "https://github.com/lpoo451/dsh-op-splash#readme"
 }

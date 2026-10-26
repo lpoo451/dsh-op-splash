@@ -71,7 +71,7 @@ try {
   ok(T.detectKind('a.exe') === null && T.detectKind('noext') === null, 'detectKind: 不收的类型返回 null');
   ok(T.slugify('My Video.mp4') === 'my-video-mp4', 'slugify: 标题 → 合法 id');
   ok(T.slugify('命运石之门') === 'clip', 'slugify: 中文标题兜底成 clip');
-  ok(T.mediaUrl({ id: 'x', file: 'video.mp4' }) === '/dsh-op-splash/media/x/video.mp4?v=1.4.0', 'mediaUrl: 唯一拼法');
+  ok(T.mediaUrl({ id: 'x', file: 'video.mp4' }) === '/dsh-op-splash/media/x/video.mp4?v=1.4.1', 'mediaUrl: 唯一拼法');
 
   /* 1.5) 配置归一化：随机开关与图片停留时长的默认值、夹取、回落 */
   const d0 = T.normalize({}, ['steins-gate-op']);
