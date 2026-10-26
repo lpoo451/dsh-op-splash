@@ -1,0 +1,145 @@
+/* dsh-op-splash — 开场动画播放器样式（作用域锁死在自身 root，不污染其它插件） */
+#dsh-op-splash-root {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483000;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  transition: opacity 0.45s ease;
+}
+#dsh-op-splash-root.dos-out {
+  opacity: 0;
+}
+#dsh-op-splash-root .dos-video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #000;
+}
+/* 图片动画：淡入 → 停住 → 淡出（class 由 splash.js 按时长切换） */
+#dsh-op-splash-root .dos-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity 0.9s ease;
+}
+#dsh-op-splash-root .dos-image.dos-img-in {
+  opacity: 1;
+}
+#dsh-op-splash-root .dos-image.dos-img-out {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+/* 播放期提示：一行「点击跳过」小字 + 一条淡进度线（1.5 秒后淡入，不打扰开场）
+   v1.2.1 修可见性：原本是「纯白小字、整体 55% 透明度、无任何衬底」直接压在画面上，
+   碰上《命运石之门》OP 开头那几秒的白色逆光画面就等于隐形；进度线 2px、50% 白、
+   贴在屏幕最底部同理，亮画面上基本看不见。现在补三样：自下而上的暗色渐变衬底、
+   文字阴影、z-index（确保压住视频/图片层）。形态仍是「一行小字 + 一条淡线」。 */
+#dsh-op-splash-root .dos-hint {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  padding: 30px 0 20px;
+  text-align: center;
+  color: #fff;
+  font-size: 13px;
+  letter-spacing: 2px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.62), rgba(0, 0, 0, 0));
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.85);
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  pointer-events: none;
+}
+#dsh-op-splash-root .dos-hint.on {
+  opacity: 1;
+}
+#dsh-op-splash-root .dos-hint span {
+  opacity: 0.92;
+}
+#dsh-op-splash-root .dos-hint i {
+  display: block;
+  height: 3px;
+  width: 0;
+  margin-top: 10px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.7);
+  transition: width 0.2s linear;
+}
+/* 位置变体：左下 / 右下。衬底渐变与文字阴影与默认完全一致，只挪对齐方式。 */
+#dsh-op-splash-root .dos-hint.dos-hint-left {
+  text-align: left;
+  padding-left: 40px;
+}
+#dsh-op-splash-root .dos-hint.dos-hint-right {
+  text-align: right;
+  padding-right: 40px;
+}
+/* 幻灯片（一次导入多张图）：容器铺满，每张绝对定位叠着换
+   四种进场方式（D1）：fade 淡入 / zoom 推进 / flash 白闪 / wipe 擦除 */
+#dsh-op-splash-root .dos-slides {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#dsh-op-splash-root .dos-slide {
+  position: absolute;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  opacity: 0;
+}
+#dsh-op-splash-root .dos-slide.in {
+  opacity: 1;
+}
+#dsh-op-splash-root .dos-slide.out {
+  opacity: 0;
+}
+#dsh-op-splash-root .dos-tr-fade,
+#dsh-op-splash-root .dos-tr-zoom,
+#dsh-op-splash-root .dos-tr-flash,
+#dsh-op-splash-root .dos-tr-wipe {
+  transition: opacity 0.9s ease, transform 1.4s ease, clip-path 0.9s ease;
+}
+/* zoom：从略大推进到原位，像镜头慢慢推近 */
+#dsh-op-splash-root .dos-tr-zoom {
+  transform: scale(1.08);
+}
+#dsh-op-splash-root .dos-tr-zoom.in {
+  transform: scale(1);
+}
+/* wipe：靠 clip-path 从右往左揭开，不靠透明度 */
+#dsh-op-splash-root .dos-tr-wipe {
+  opacity: 1;
+  clip-path: inset(0 100% 0 0);
+}
+#dsh-op-splash-root .dos-tr-wipe.in {
+  clip-path: inset(0 0 0 0);
+}
+#dsh-op-splash-root .dos-tr-wipe.out {
+  opacity: 0;
+}
+/* flash 的白闪层：压在画面之上、提示条之下（z-index 比 .dos-hint 的 2 小） */
+#dsh-op-splash-root .dos-flash {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: #fff;
+  opacity: 0;
+  pointer-events: none;
+}
+#dsh-op-splash-root .dos-flash.on {
+  animation: dos-flash 0.42s ease-out;
+}
+@keyframes dos-flash {
+  0% { opacity: 0; }
+  18% { opacity: 0.85; }
+  100% { opacity: 0; }
+}

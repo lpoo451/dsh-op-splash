@@ -1,0 +1,56 @@
+{
+  "name": "dsh-op-splash",
+  "version": "1.4.0",
+  "description": "DeepSeek Harness 开场动画插件：冷启动全屏播放动画（仓库不带素材，装上后导入自己的视频/图片/幻灯片），设置页提供总开关、动画选择器、播放频率（每次/每会话/每天）、随机（可限定参与范围并逐项设权重）、按时段播放（可限定星期几）、图片停留时长（2/3/5 秒、一直停到手动跳过、或自定义 1–600 秒）、幻灯片（多张图按序播放，每张停留/过渡/间隔可改，顺序可调）与四种转场（淡入淡出/缓慢推进/白闪/擦除）、跳过提示（位置与文案可配）与音量控制，并可直接导入自己的视频/图片/幻灯片；素材清单会列出每件素材的体积与「未上架」原因（导入素材存在 ~/.dsh/dsh-op-splash-animations/）。与 dsh-startup-screen 完全独立，互不修改。",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "startup",
+    "splash",
+    "boot-animation",
+    "video",
+    "image"
+  ],
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/*.js",
+    "lib/*.css",
+    "test",
+    "docs",
+    "cordis.patch.yml",
+    "README.md",
+    "INSTALL.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node test/smoke.mjs && node test/smoke-desktop-boot.mjs && node test/smoke-import.mjs && node test/smoke-splash.mjs && node test/smoke-features.mjs",
+    "test:smoke": "node test/smoke.mjs",
+    "test:client": "node test/smoke-desktop-boot.mjs",
+    "test:import": "node test/smoke-import.mjs",
+    "test:splash": "node test/smoke-splash.mjs",
+    "test:features": "node test/smoke-features.mjs"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-settings"
+      ],
+      "platform": "web"
+    }
+  },
+  "author": "鲸鱼娘女仆 & 老大"
+}

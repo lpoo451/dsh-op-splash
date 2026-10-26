@@ -1,0 +1,10 @@
+# dsh-op-splash — DSH bundle patch
+#
+# 把插件的 Host 半侧挂进当前 profile 的配置树；Web 半侧由 package.json 的 dsh.client 声明，
+# 宿主按 dsh.client 自动组装 bundle，这里不用写。
+#
+# 安装（本地开发）：
+#   dsh plugin --profile web add link:D:\Documents\deepseek-harness\default-workspace\dsh-op-splash
+- insert:
+    - id: dsh-op-splash
+      name: dsh-op-splash
