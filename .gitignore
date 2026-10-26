@@ -1,0 +1,8 @@
+lib/animations/steins-gate-op/
+.test-dshhome/
+.test-features-home/
+node_modules/
+*.log
+_backups/
+Thumbs.db
+.DS_Store
