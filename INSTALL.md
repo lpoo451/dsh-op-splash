@@ -15,9 +15,9 @@ dsh plugin --profile web add link:D:\Documents\deepseek-harness\default-workspac
 3. 跳过验证：播放中点击画面或按 Esc，应立即淡出。
 4. 频率验证：mode 设为 daily 后刷新页面不应再播；把 `~/.dsh/dsh-op-splash.json` 里 `mode` 改回 `always` 重启恢复。
 
-## 与 dsh-startup-screen 共存
+## 与其他插件共存
 
-二者完全独立、互不修改。若同时启用，冷启动会叠加两层启动画面——在其中一个的设置里关掉即可（例如用本插件时，把 dsh-startup-screen 的动画关掉）。
+完全独立、互不修改。若与其他负责启动画面的插件同时启用，冷启动会叠加两层启动画面——在其中一个的设置里关掉即可。
 
 ## 卸载
 

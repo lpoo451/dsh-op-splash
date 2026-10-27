@@ -48,11 +48,11 @@ mkdir -p lib/animations/steins-gate-op
 
 见 [INSTALL.md](INSTALL.md)。
 
-## 与 dsh-startup-screen 的关系
+## 与其他插件的关系
 
-**完全独立**：独立的 DOM id（`dsh-op-splash-*`）、独立的存储键（`dsh-op-splash:shown` / `dsh-op-splash:day`）、独立的路由前缀（`/dsh-op-splash/*`）、独立的 CSS 类（`dos-*`）。本插件不读取、不修改、不依赖 dsh-startup-screen 的任何文件。
+**完全独立**：独立的 DOM id（`dsh-op-splash-*`）、独立的存储键（`dsh-op-splash:shown` / `dsh-op-splash:day`）、独立的路由前缀（`/dsh-op-splash/*`）、独立的 CSS 类（`dos-*`）。本插件不读取、不修改、不依赖任何其他插件的文件。
 
-两者若同时启用，冷启动会先后出现两层启动画面（后挂者覆盖在前者之上）。**建议二选一**：用本插件时，在 dsh-startup-screen 的设置里关掉它的动画，或反之。
+若与其他负责启动画面的插件同时启用，冷启动会先后出现两层启动画面（后挂者覆盖在前者之上）。**建议二选一**：在其中一个的设置里关掉它的动画即可。
 
 ## 新增内置动画素材包（零代码）
 
